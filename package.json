@@ -1,0 +1,25 @@
+{
+  "name": "@konfirm/flagpool",
+  "version": "0.0.0",
+  "description": "Describe the purpose of the project",
+  "main": "source/main.js",
+  "scripts": {
+    "test": "lab -vclr",
+    "test-coverage-html": "lab -clr html -o report.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/konfirm/node-flagpool.git"
+  },
+  "bugs": {
+    "url": "https://github.com/konfirm/node-flagpool/issues"
+  },
+  "keywords": [],
+  "author": "Rogier Spieker <rogier@konfirm.eu>",
+  "license": "MIT",
+  "devDependencies": {
+    "@konfirm/labrat": "^1.1.0",
+    "eslint-config-strict": "^14.0.1"
+  },
+  "dependencies": {}
+}
