@@ -1,42 +1,87 @@
-# Project template
-
-Basic Node.js project template, helps to set up the basics real quick.
-
+# Bitbox
+Assign numeric flags (binary sequence) to all kinds or values, allowing for unique reference numbers and reproducable sets by using bitwise comparison
 
 ## Installation
 
 ```
-$ npx degit konfirm/node-template <project>
-
-$ cd <project>
-
-$ make bootstrap
+$ npm install @konfirm/bitbox
 ```
 
-The `make bootstrap` command will take care of replacing the `PROJECT_NAME` and `PROJECT_YEAR` placeholders in all files as well as initialize a git repo and making the first commit.
+## Usage
+As the Bitbox library as a scoped package, the scope is also need when the library is used.
 
-## Structure
+```js
+const Bitbox = require('@konfirm/bitbox');
+const bitbox = new Bitbox();
 
-### Dependencies
+//  adding individual values
+console.log(bitbox.flag('foo'));     //  1
+console.log(bitbox.flag(Infinity));  //  2
+console.log(bitbox.flag(Math.PI));   //  4
+console.log(bitbox.flag('bar'));     //  8
+
+//  adding multiple values (note that 'foo' and 'bar' were already added)
+console.log(bitbox.flag('baz', 'bar', 'foo'));  // 25 (foo 1 + bar 8 + baz 16)
+
+//  value retrieval (note that the order in is always the order in which the values were added)
+console.log(bitbox.values(25));  //  ['foo', 'bar', 'baz']
+console.log(bitbox.values(2));   //  [ Infinity ]
+console.log(bitbox.values(10));  //  [ Infinity, 'bar' ]
+```
+
+## API
+
+### `flag(value [, value, ...])`
+Obtain the unique 'flag' for the given value, or the sum if multiple values are provided. Any value which is not yet known is associated with a new 'flag'.
+
+```js
+const Bitbox = require('@konfirm/bitbox');
+const bitbox = new Bitbox();
+
+console.log(bitbox.flag('foo'));         //  1
+console.log(bitbox.flag('bar'));         //  2
+console.log(bitbox.flag('foo', 'bar'));  //  3
+```
+
+Do note that if an array of previously existing values is provided, the array itself is considered the value. If the 'flag' of the arrays' values is to be calculated, use the spread (splat) operator.
+
+```js
+const Bitbox = require('@konfirm/bitbox');
+const bitbox = new Bitbox();
+
+console.log(bitbox.flag('foo'));         //  1
+console.log(bitbox.flag('bar'));         //  2
+console.log(bitbox.flag('baz'));         //  4
+
+const array = [ 'foo', 'bar', 'baz' ];
+
+//  the array itself
+console.log(bitbox.flag(array));         //  8
+//  the spread array
+console.log(bitbox.flag(...array));      //  7
+```
+
+### `values(flag [, verify=true])`
+The inverse of `flag`, obtaining the values associated with the provided flag. The `values` method will always provide the values as an array and will be in the order the values were given their flags.
+
+```js
+const Bitbox = require('@konfirm/bitbox');
+const bitbox = new Bitbox();
+
+//  quickly flag a couple of values
+bitbox.flag('foo', 'bar', 'baz', 'qux');
+
+console.log(bitbox.values(9));          //  [ 'foo', 'qux' ]
+console.log(bitbox.values(33));         //  throws an Error
+//  bypass the error by turning off verification
+console.log(bitbox.values(33, false));  //  [ 'foo' ]
+```
+
+
+## Dependencies
 All dependencies are development only:
  - [`@konfirm/labrat`](https://www.npmjs.com/package/@konfirm/labrat) - BDD syntax exposure of [Hapi's Lab](https://github.com/hapijs/lab) test framework
  - [`eslint-config-strict`](https://www.npmjs.com/package/eslint-config-strict)
-
-### Folders
-The folder structure is simple:
-
- - /source - The folder where the actual module source code resides
- - /test - The starting point of all unit tests
- - /test/index.spec.js - Bootstrap of the `@konfirm/labrat` package, preparing all basics for [Hapi's Lab](https://github.com/hapijs/lab) test framework.
- - /test/source/* - sources to test, allows for using the same structure as the actual source folder
-
-## Configuration
-The configuration is both basic and opiniated
- - `.editorconfig` - uses tabs (except for package.json)
- - `.eslintrc.json` - some additional restrictions and relaxing settings for eslint-config-strict
- - `.npmignore` - Ignores the test folder and configuration files from being published
- - `.gitignore` - Ignores the node_modules folder
-
 
 ## License
 
