@@ -1,7 +1,7 @@
 {
-  "name": "@konfirm/flagpool",
+  "name": "@konfirm/bitbox",
   "version": "0.0.0",
-  "description": "Describe the purpose of the project",
+  "description": "Automatically assign numeric flags binary sequence to all kinds or values, including objects",
   "main": "source/main.js",
   "scripts": {
     "test": "lab -vclr",
@@ -9,10 +9,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/konfirm/node-flagpool.git"
+    "url": "https://github.com/konfirm/node-bitbox.git"
   },
   "bugs": {
-    "url": "https://github.com/konfirm/node-flagpool/issues"
+    "url": "https://github.com/konfirm/node-bitbox/issues"
   },
   "keywords": [],
   "author": "Rogier Spieker <rogier@konfirm.eu>",
