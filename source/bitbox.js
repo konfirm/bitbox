@@ -21,29 +21,43 @@ class Bitbox {
 		return storage.get(this);
 	}
 
-	value(...flags) {
-		if (flags.length > 1) {
-			return flags.reduce((carry, flag) => carry + this.value(flag), 0);
+	/**
+	 *  Get the flags associated with the provided value(s)
+	 *
+	 *  @param    {*} values
+	 *  @returns  int flag
+	 *  @memberof Bitbox
+	 */
+	flag(...values) {
+		if (values.length > 1) {
+			return values.reduce((carry, value) => carry + this.flag(value), 0);
 		}
 
 		const pool = this[poolSymbol];
-		const [flag] = flags;
+		const [value] = values;
 
-		if (pool.indexOf(flag) < 0) {
-			pool.push(flag);
+		if (pool.indexOf(value) < 0) {
+			pool.push(value);
 		}
 
 		//  eslint-disable-next-line no-bitwise
-		return 1 << pool.indexOf(flag);
+		return 1 << pool.indexOf(value);
 	}
 
-	flags(bit) {
+	/**
+	 *  Obtain the values associated with the provided flag
+	 *
+	 *  @param    {*} flag
+	 *  @returns  [*]
+	 *  @memberof Bitbox
+	 */
+	values(flag) {
 		const pool = this[poolSymbol];
 
 		//  eslint-disable-next-line no-bitwise
 		return pool.reduce(
 			(carry, type, index) =>
-				carry.concat(bit & (1 << index) ? type : []),
+				carry.concat(flag & (1 << index) ? type : []),
 			[],
 		);
 	}

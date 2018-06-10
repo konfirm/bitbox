@@ -2,7 +2,7 @@
   "name": "@konfirm/bitbox",
   "version": "0.0.0",
   "description": "Automatically assign numeric flags binary sequence to all kinds or values, including objects",
-  "main": "source/main.js",
+  "main": "source/bitbox.js",
   "scripts": {
     "test": "lab -vclr",
     "test-coverage-html": "lab -clr html -o report.html"
