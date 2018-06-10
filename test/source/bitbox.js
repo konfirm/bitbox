@@ -85,6 +85,7 @@ describe('Bitbox', () => {
 		tests.forEach((test) => {
 			it(test.name, (next) => {
 				const box = new Bitbox();
+				const overshoot = 1 << (test.values.length + 1);
 
 				test.values.forEach((value, index) => {
 					//  eslint-disable-next-line no-bitwise
@@ -103,6 +104,12 @@ describe('Bitbox', () => {
 					expect(box.values(scenario.flag)).to.equal(values);
 					expect(box.flag(...values)).to.equal(scenario.flag);
 				});
+
+				expect(box.values(overshoot, false)).to.be.array();
+				expect(box.values(overshoot, false)).to.be.length(0);
+
+				expect(() => box.values(overshoot)).to.throw(/^Failed to obtain all values/);
+				expect(() => box.values(overshoot, true)).to.throw(/^Failed to obtain all values/);
 
 				next();
 			});

@@ -48,18 +48,24 @@ class Bitbox {
 	 *  Obtain the values associated with the provided flag
 	 *
 	 *  @param    {*} flag
+	 *  @param    {boolean} [verify=true]
 	 *  @returns  [*]
 	 *  @memberof Bitbox
 	 */
-	values(flag) {
+	values(flag, verify = true) {
 		const pool = this[poolSymbol];
-
 		//  eslint-disable-next-line no-bitwise
-		return pool.reduce(
+		const values = pool.reduce(
 			(carry, type, index) =>
 				carry.concat(flag & (1 << index) ? type : []),
 			[],
 		);
+
+		if (!verify || this.flag(...values) === flag) {
+			return values;
+		}
+
+		throw new Error(`Failed to obtain all values for flag ${flag}`);
 	}
 }
 
