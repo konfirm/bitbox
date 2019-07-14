@@ -1,6 +1,6 @@
 {
   "name": "@konfirm/bitbox",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Automatically assign numeric flags binary sequence to all kinds or values, including objects",
   "main": "source/bitbox.js",
   "scripts": {
