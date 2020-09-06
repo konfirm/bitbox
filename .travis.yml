@@ -2,23 +2,23 @@ language: node_js
 os: linux
 dist: xenial
 node_js:
-    - 8
-    - 9
-    - 10
-    - 11
-    - 12
-    - 13
-    - 14
+  - 8
+  - 9
+  - 10
+  - 11
+  - 12
+  - 13
+  - 14
 jobs:
-    include:
-        - stage: npm release
-          if: tag IS present
-          node_js: 14
-          deploy:
-              provider: npm
-              email: rogier+npm@konfirm.eu
-              on:
-                  branch: master
-                  tags: true
-              api_key:
-                  secure: XY6Z9g+mmla3s/cS+rTpmw87kbHsW1Dma42TpA7nIo30XEcfUy538GyWmg6YRsxzoOflJ61WRXVEJyKouFDZ12B6k/wqEedruPa9qFcGf89see2d3IfTjh11a8aHFaHQlezDio0aC0K5BJOgBra39IpilwulSgFqAyJ8FIvAcnwxFiCtSYdQszkVDsXNp/gl6B1/yHAoE3vCplgNdHT1HLY92MwEKzDYwb7DnAnlOT7nVyI4p1LtKgFoiID7CwLd4/FPZOgpqgy+sYPy6f4uHBmYSrxdOG07nK/J/r2DDCG8jOjS8qgEK3cUnWJCJzTBjVrHIoiu51/s+IDCOZbwrZ9CDWLGNf5pQxxaPWPOfPNF9wXXVnQNt58e+N2s47EWfLbc960QDYZkYkUthBORSBcy8Nz/mYIaLBQI4FtU8E/NBE7HfIDJu8UNUtpY03oz+T5x5+Y0Jmb5lp4eGeHe87Gn2xp9qnf8r78BeDa+bFELsUViv14CZ77Egfj3f4KF7EIrtn5Zu/nm2uiWyVOOmLdzUEhsFbja0ecQZcEczZwdgmFkpWfwWZ2oKU75lgM1BuiS/rhsYoQuFl0OWROLn+tzfW9n1bbjcLVui/6pc/tajEs21RDL2HAPM12bsfKG3IaLspoqEmRe/+eUq69NGj08O4j/mkA2CKiFoFCW5wk=
+  include:
+    - stage: npm release
+      if: tag IS present
+      node_js: 14
+      deploy:
+        provider: npm
+        email: rogier+npm@konfirm.eu
+        on:
+          branch: master
+          tags: true
+        api_key:
+          secure: XY6Z9g+mmla3s/cS+rTpmw87kbHsW1Dma42TpA7nIo30XEcfUy538GyWmg6YRsxzoOflJ61WRXVEJyKouFDZ12B6k/wqEedruPa9qFcGf89see2d3IfTjh11a8aHFaHQlezDio0aC0K5BJOgBra39IpilwulSgFqAyJ8FIvAcnwxFiCtSYdQszkVDsXNp/gl6B1/yHAoE3vCplgNdHT1HLY92MwEKzDYwb7DnAnlOT7nVyI4p1LtKgFoiID7CwLd4/FPZOgpqgy+sYPy6f4uHBmYSrxdOG07nK/J/r2DDCG8jOjS8qgEK3cUnWJCJzTBjVrHIoiu51/s+IDCOZbwrZ9CDWLGNf5pQxxaPWPOfPNF9wXXVnQNt58e+N2s47EWfLbc960QDYZkYkUthBORSBcy8Nz/mYIaLBQI4FtU8E/NBE7HfIDJu8UNUtpY03oz+T5x5+Y0Jmb5lp4eGeHe87Gn2xp9qnf8r78BeDa+bFELsUViv14CZ77Egfj3f4KF7EIrtn5Zu/nm2uiWyVOOmLdzUEhsFbja0ecQZcEczZwdgmFkpWfwWZ2oKU75lgM1BuiS/rhsYoQuFl0OWROLn+tzfW9n1bbjcLVui/6pc/tajEs21RDL2HAPM12bsfKG3IaLspoqEmRe/+eUq69NGj08O4j/mkA2CKiFoFCW5wk=
