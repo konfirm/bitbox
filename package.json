@@ -17,9 +17,11 @@
   "keywords": [],
   "author": "Rogier Spieker <rogier@konfirm.eu>",
   "license": "MIT",
+  "engines": {
+    "node": ">= 8.0.0"
+  },
   "devDependencies": {
     "@konfirm/labrat": "^2.0.2",
     "eslint-config-strict": "^14.0.1"
-  },
-  "dependencies": {}
+  }
 }
